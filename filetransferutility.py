@@ -8,7 +8,7 @@ import threading
 from crypto import *
 from flask import flash, redirect, url_for, request
 
-import app
+from app import app
 
 
 PORT = 2121
