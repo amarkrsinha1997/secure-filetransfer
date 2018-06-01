@@ -7,7 +7,7 @@ def encrypt(key, filename, infile):
 	chunksize = 64*1024
 	outputfile = "(encrypted)"+filename
 
-	filesize = str(os.path.getsize(filename)).zfill(16)
+	filesize = str(infile.st_size).zfill(16)
 
 	IV = Random.new().read(16)
 

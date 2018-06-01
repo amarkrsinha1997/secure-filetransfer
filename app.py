@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 import threading, socket
 from filetransferutility import *
+from werkzeug import secure_filename
 
 app = Flask(__name__)
 
@@ -73,7 +74,7 @@ def sendfile():
 		print(filename)
 		result = client.connect(filename, file)
 
-		print(filepath)
+		print(filename)
 		return render_template('sendfile.html')
 	return render_template('sendfile.html')
 

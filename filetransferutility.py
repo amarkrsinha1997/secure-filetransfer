@@ -83,7 +83,7 @@ class Client():
             print(e)
         try:
             print ("[!] File Transfer in Progress....")
-            result = self.ftp.storbinary("STOR "+str(os.path.basename("(encrypted)"+fil)),localfile)   # transfer the encrypted file to the FTP server using raw FTP STOR command. Result of the data transfer will be returned
+            result = self.ftp.storbinary("STOR "+str(os.path.basename("(encrypted)"+filename)),localfile)   # transfer the encrypted file to the FTP server using raw FTP STOR command. Result of the data transfer will be returned
         except Exception as e:
             print(e)     # print any exception occured
         else:
