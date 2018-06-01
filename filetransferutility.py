@@ -18,6 +18,7 @@ allowed_connection_per_ip = 5
 
 class MyHandler(FTPHandler):
     def on_file_received(self,filepath):
+        print(filepath)
         decrypt(getkey(), filepath)
 
         # flash("File received", filepath)
