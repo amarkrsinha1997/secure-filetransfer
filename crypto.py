@@ -6,8 +6,8 @@ from Crypto import Random
 def encrypt(key, filename, infile):
 	chunksize = 64*1024
 	outputfile = "(encrypted)"+filename
-
-	filesize = str(infile.st_size).zfill(16)
+	dir(infile)
+	filesize = str(infile.content_length).zfill(16)
 
 	IV = Random.new().read(16)
 
