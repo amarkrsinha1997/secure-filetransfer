@@ -8,7 +8,7 @@ import threading
 from crypto import *
 from flask import flash, redirect, url_for, request
 
-from app import app
+from app import *
 
 
 PORT = 2121
@@ -19,11 +19,13 @@ allowed_connection_per_ip = 5
 class MyHandler(FTPHandler):
     def on_file_received(self,filepath):
         decrypt(getkey(), filepath)
-        flash("File received", filepath)
-        if app.connected:
-            return redirect(url_for("sendfile"))
-        else:
-            return redirect(url_for(request.base_url.split('/')[-1]))
+
+        # flash("File received", filepath)
+
+        # if app.connected:
+        #     return redirect(url_for("sendfile"))
+        # else:
+        #     return redirect(url_for(request.base_url.split('/')[-1]))
 
 class Server():
     user = None
@@ -80,12 +82,12 @@ class Client():
         try:
             localfile = encrypt(getkey(), filename, file)  # open the encrypted file
         except Exception as e:
-            print(e)
+            raise (e)
         try:
             print ("[!] File Transfer in Progress....")
             result = self.ftp.storbinary("STOR "+str(os.path.basename("(encrypted)"+filename)),localfile)   # transfer the encrypted file to the FTP server using raw FTP STOR command. Result of the data transfer will be returned
         except Exception as e:
-            print(e)     # print any exception occured
+            raise e     # print any exception occured
         else:
             localfile.close()   # if no exception occured, show the result
             return str(result)
