@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<form method="POST" enctype="multipart/form-data" id="form">
+		<input type="file" name="file" id="filepath">
+		<button type="submit">Send File</button>	
+	</form>
+
+	<form method="POST" action="/closeserver">
+		<button type=submit>Quit</button>
+	</form>
+{% endblock %}
